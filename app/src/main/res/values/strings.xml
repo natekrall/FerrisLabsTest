@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Test</string>
+    <string name="participant">Participant</string>
+    <string name="submit">Submit</string>
+    <string name="testName">Math Test</string>
+    <string name="question">Question</string>
+    <string name="back">Back</string>
+    <string name="next">next</string>
+    <string name="exit">Exit</string>
+    <string name="results">Results</string>
+    <string name="questions_answered_correctly">Total Correct Answers</string>
+    <string name="questions_attempted">Total Questions Answered</string>
+    <string name="return_to_main_menu">Return to Main Menu</string>
+    <string name="total_errors">Total Errors</string>
+    <string name="accuracy">Accuracy</string>
+    <string name="error_rate">Error Rate</string>
+</resources>
