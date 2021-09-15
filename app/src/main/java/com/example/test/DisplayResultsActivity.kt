@@ -11,8 +11,7 @@ class DisplayResultsActivity : AppCompatActivity() {
 
 
     private fun returnHome(){
-        val intent = Intent(this, MainActivity::class.java).apply{
-        }
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
 

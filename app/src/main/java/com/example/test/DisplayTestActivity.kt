@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class DisplayTestActivity : AppCompatActivity() {
     private val answers = Questions()
-    private val duration: Long = 60000
+    private val duration: Long = 180000
     private var participantName = ""
     var countDown = 10
 

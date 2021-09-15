@@ -7,6 +7,18 @@
     tools:context=".MainActivity">
 
     <EditText
+        android:id="@+id/projectName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="@string/project_name"
+        app:layout_constraintHorizontal_bias="0.65"
+        app:layout_constraintStart_toStartOf="@+id/participantName"
+        app:layout_constraintTop_toBottomOf="@+id/trialName" />
+
+    <EditText
         android:id="@+id/participantName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,18 +26,79 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="@string/participant"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/trialName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.71"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/trialName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="@string/trialName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.65"
+        app:layout_constraintStart_toStartOf="@+id/participantName"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="@string/submit"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/participantName" />
+        app:layout_constraintTop_toBottomOf="@+id/trialName" />
+
+    <Button
+        android:id="@+id/exportData"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="18dp"
+        android:text="@string/export_data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/participantIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:text="@string/participantIndicator"
+        android:gravity="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/trialIndicator"
+        app:layout_constraintEnd_toStartOf="@+id/participantName" />
+    <TextView
+        android:id="@+id/trialIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:text="@string/trialIndicator"
+        android:gravity="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/participantIndicator"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/projectIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:text="@string/projectIndicator"
+        android:gravity="center"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/participantIndicator"
+        app:layout_constraintTop_toBottomOf="@+id/trialIndicator" />
+
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
