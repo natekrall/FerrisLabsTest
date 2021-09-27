@@ -25,12 +25,13 @@
 
         <TableRow
             android:layout_weight="1">
+
             <TextView
                 android:id="@+id/participantId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/participant" />
+                android:text="@string/participantIndicator" />
 
             <TextView
                 android:id="@+id/participant"

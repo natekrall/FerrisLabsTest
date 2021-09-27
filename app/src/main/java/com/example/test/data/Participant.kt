@@ -9,9 +9,11 @@ data class Participant (
     @PrimaryKey(autoGenerate = true)
     val id : Int,
     val participant : String,
+    val project: String,
+    val trial: String,
     val correctlyAnswered: Int,
     val incorrectlyAnswered: Int,
     val totalAnswered: Int,
-    val accuracyRate: Int,
+    val accuracyRate: Float,
     val errorRate: Float
 )

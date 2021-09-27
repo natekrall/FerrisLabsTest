@@ -11,6 +11,7 @@ class ExportData : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_export_data)
 
+
         val projectName: EditText = findViewById(R.id.projectQuery)
         val begin: Button = findViewById(R.id.exitExport)
         val export: Button = findViewById(R.id.export)

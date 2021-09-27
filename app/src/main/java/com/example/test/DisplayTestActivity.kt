@@ -13,9 +13,9 @@ import androidx.appcompat.app.AppCompatActivity
 
 class DisplayTestActivity : AppCompatActivity() {
     private val answers = Questions()
-    private val duration: Long = 180000
-    private var participantName = ""
+    private val duration: Long = 600000
     var countDown = 10
+
 
 
 
@@ -24,7 +24,10 @@ class DisplayTestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_test)
-        participantName = intent.getStringExtra("ParticipantID").toString()
+        //Values from Previous Activity
+        val participantName = intent.getStringExtra("ParticipantID").toString()
+        val project = intent.getStringExtra("Project").toString()
+        val trial = intent.getStringExtra("Trial").toString()
 
         //Initializing Button and Editable
         val btn1 = findViewById<Button>(R.id.back)
@@ -34,6 +37,17 @@ class DisplayTestActivity : AppCompatActivity() {
         val questionText = findViewById<TextView>(R.id.question)
         val cNum = findViewById<TextView>(R.id.countDown)
         questionText.text = answers.newQuestion()
+
+        fun viewResults(){
+            //store answer and question
+            val intent = Intent(this, DisplayResultsActivity::class.java)
+            intent.putExtra("ParticipantID", participantName)
+            intent.putExtra("Project", project)
+            intent.putExtra("Trial", trial)
+            intent.putExtra("qAttempted", answers.getTotalQ())
+            intent.putExtra("qCorrectly", answers.correctlyAnswered())
+            startActivity(intent)
+        }
 
         val timer2 = object: CountDownTimer(10000, 1000){
             override fun onTick(p0: Long) {
@@ -96,14 +110,7 @@ class DisplayTestActivity : AppCompatActivity() {
 
     }
 
-    fun viewResults(){
-        //store answer and question
-        val intent = Intent(this, DisplayResultsActivity::class.java)
-        intent.putExtra("ParticipantID", participantName)
-        intent.putExtra("qAttempted", answers.getTotalQ())
-        intent.putExtra("qCorrectly", answers.correctlyAnswered())
-        startActivity(intent)
-    }
+
 
 
 }

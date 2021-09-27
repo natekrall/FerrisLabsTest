@@ -13,15 +13,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val participant: EditText = findViewById(R.id.participantName)
+        val project: EditText = findViewById(R.id.projectName)
+        val trial: EditText = findViewById(R.id.trialName)
         val begin = findViewById<Button>(R.id.submit)
         val export = findViewById<Button>(exportData)
 
-
+        //Functions for going between activities
         fun startTest(){
             val intent = Intent(this, DisplayTestActivity::class.java)
             intent.putExtra("ParticipantID", participant.text.toString())
-            //intent.putExtra("ParticipantID", participant.text.toString())
-            //intent.putExtra("ParticipantID", participant.text.toString())
+            intent.putExtra("Project", project.text.toString())
+            intent.putExtra("Trial", trial.text.toString())
             startActivity(intent)
         }
 
@@ -31,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
+        //onClick Listeners
         begin.setOnClickListener{
             startTest()
         }
