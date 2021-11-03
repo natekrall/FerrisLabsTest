@@ -6,21 +6,32 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class ParticipantViewModel(application: Application): AndroidViewModel(application) {
 
-    private val readAllData: LiveData<List<Participant>>
+    val readAllData: LiveData<List<Participant>>
     private val repository: ParticipantRepository
-    init{
+
+    init {
         val participantDao = ParticipantDatabase.getDatabase(application).participantDao()
         repository = ParticipantRepository(participantDao)
         readAllData = repository.readAllData
     }
 
-    fun addParticipant(participant: Participant){
-        viewModelScope.launch(Dispatchers.IO){
+    fun addParticipant(participant: Participant) {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.addParticipant(participant)
         }
     }
+
+    fun nukeAll() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.nukeAll()
+        }
+    }
+
+
+
 }
 

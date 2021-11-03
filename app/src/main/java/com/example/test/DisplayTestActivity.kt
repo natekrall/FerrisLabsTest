@@ -47,6 +47,7 @@ class DisplayTestActivity : AppCompatActivity() {
             intent.putExtra("qAttempted", answers.getTotalQ())
             intent.putExtra("qCorrectly", answers.correctlyAnswered())
             startActivity(intent)
+            finish()
         }
 
         val timer2 = object: CountDownTimer(10000, 1000){

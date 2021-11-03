@@ -57,6 +57,7 @@ class DisplayResultsActivity : AppCompatActivity() {
             insertDataToDatabase(correctedInt, pErrorsInt, attemptedInt, pAccuracyF, pErrorPercentF)
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         exit.setOnClickListener{
