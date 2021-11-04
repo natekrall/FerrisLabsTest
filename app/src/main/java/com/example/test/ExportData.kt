@@ -1,21 +1,15 @@
 package com.example.test
 import android.app.AlertDialog
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.provider.DocumentsContract
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.test.data.ParticipantDatabase
-import com.example.test.data.ParticipantRepository
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.test.data.ParticipantViewModel
-import java.io.File
-import java.io.FileOutputStream
-import java.io.FileWriter
-import java.io.IOException
 
 
 class ExportData : AppCompatActivity() {
@@ -32,7 +26,7 @@ class ExportData : AppCompatActivity() {
         val export: Button = findViewById(R.id.export)
         val delete: Button = findViewById(R.id.deleteData)
         //ParticipantViewModel
-        //mParticipantViewModel = ViewModelProvider(this).get(ParticipantViewModel::class.java)
+        mParticipantViewModel = ViewModelProvider(this).get(ParticipantViewModel::class.java)
 
 
         begin.setOnClickListener{
@@ -54,11 +48,50 @@ class ExportData : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
-
+    val CREATE_FILE = 0
+    var write = ""
 
     private fun exportData() {
+        write = "Id, Participant, Project, Trial, Correctly Answered, Incorrectly Answered, Total Answered, Accuracy Rate, Error Rate \n"
+        val intent = Intent(Intent.ACTION_CREATE_DOCUMENT).apply{
+            addCategory(Intent.CATEGORY_OPENABLE)
+            type = "text/csv"
+            putExtra(Intent.EXTRA_TITLE, "Nate")
+            putExtra(DocumentsContract.EXTRA_INITIAL_URI, "")
+        }
+        startActivityForResult(intent, CREATE_FILE)
 
+        mParticipantViewModel.readAllData.observe(this, Observer { list ->
+            val listIterator = list.iterator()
+            list.forEach{
+                write = write + it.id + ", "
+                write = write + it.participant + ", "
+                write = write + it.project + ", "
+                write = write + it.trial + ", "
+                write = write + it.correctlyAnswered + ", "
+                write = write + it.incorrectlyAnswered + ", "
+                write = write + it.totalAnswered + ", "
+                write = write + it.accuracyRate + ", "
+                write = write + it.errorRate + "\n"
+            }
+        })
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == CREATE_FILE && resultCode == RESULT_OK){
+            val uri = data!!.data
+            try{
+                val outputStream = this.contentResolver.openOutputStream(uri!!)
+                outputStream?.write(write.toByteArray())
+                outputStream?.close()
+            } catch (e:Exception){
+                print(e.localizedMessage)
+            }
+        }
+    }
+
+
 
     private fun deleteData(){
         val dialogBuilder = AlertDialog.Builder(this)

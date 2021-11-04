@@ -14,8 +14,7 @@ class ParticipantRepository(private val participantDao: ParticipantDao) {
         participantDao.nukeAll()
     }
 
-    fun readParticipants(proj:String):List<Participant>{
-        return participantDao.readParticipants(proj)
+    fun readParticipants(){
+        participantDao.readParticipants()
     }
-
 }

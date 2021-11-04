@@ -6,12 +6,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 class ParticipantViewModel(application: Application): AndroidViewModel(application) {
 
     val readAllData: LiveData<List<Participant>>
     private val repository: ParticipantRepository
+
 
     init {
         val participantDao = ParticipantDatabase.getDatabase(application).participantDao()
@@ -31,7 +31,11 @@ class ParticipantViewModel(application: Application): AndroidViewModel(applicati
         }
     }
 
-
+    fun readParticipants(){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.readParticipants()
+        }
+    }
 
 }
 
